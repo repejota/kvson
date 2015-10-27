@@ -1,6 +1,9 @@
 package kvson
 
-import "io/ioutil"
+import (
+	"io/ioutil"
+	"path/filepath"
+)
 
 // Element ...
 type Element struct {
@@ -9,23 +12,23 @@ type Element struct {
 }
 
 // Get an element by its ID
-func (e Element) Get(path string, id string) (el Element, err error) {
-	filename := path + "/" + id
-	data, err := ioutil.ReadFile(filename)
+func (e Element) Get(path string) (el Element, err error) {
+	base := filepath.Base(path)
+	data, err := ioutil.ReadFile(path)
 	if err != nil {
 		return el, err
 	}
 	el = Element{
-		ID:      id,
+		ID:      base,
 		Payload: string(data),
 	}
 	return el, nil
 }
 
 // Save an element
-func (e Element) Save(path string, id string, payload string) (err error) {
-	filename := path + "/" + id
-	err = ioutil.WriteFile(filename, []byte(payload), 0644)
+func (e Element) Save(path string) (err error) {
+	filename := filepath.Join(path, e.ID)
+	err = ioutil.WriteFile(filename, []byte(e.Payload), 0644)
 	if err != nil {
 		return err
 	}
