@@ -2,10 +2,6 @@ package kvson
 
 import "testing"
 
-func TestDummy(t *testing.T) {
-
-}
-
 func TestGetError(t *testing.T) {
 	el := Element{}
 	_, err := el.Get("/tmp/foo")
