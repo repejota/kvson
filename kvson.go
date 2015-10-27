@@ -8,7 +8,7 @@ import (
 // Element ...
 type Element struct {
 	ID      string
-	Payload string
+	Payload []byte
 }
 
 // Get an element by its ID

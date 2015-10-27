@@ -13,7 +13,7 @@ func TestGetError(t *testing.T) {
 func TestSave(t *testing.T) {
 	el := Element{
 		ID:      "test_id",
-		Payload: "test_payload",
+		Payload: []byte("test_payload"),
 	}
 	err := el.Save("/tmp")
 	if err != nil {
