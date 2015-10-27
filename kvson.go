@@ -1,6 +1,9 @@
 package kvson
 
-import "io/ioutil"
+import (
+	"fmt"
+	"io/ioutil"
+)
 
 // Element ...
 type Element struct {
@@ -23,9 +26,10 @@ func (e Element) Get(path string, id string) (el Element, err error) {
 }
 
 // Save an element
-func (e Element) Save(path string, id string, payload string) (err error) {
-	filename := path + "/" + id
-	err = ioutil.WriteFile(filename, []byte(payload), 0644)
+func (e Element) Save(path string) (err error) {
+	filename := path + "/" + e.ID
+	fmt.Println(filename)
+	err = ioutil.WriteFile(filename, []byte(e.Payload), 0644)
 	if err != nil {
 		return err
 	}
