@@ -16,3 +16,11 @@ func TestSave(t *testing.T) {
 		t.Error(err)
 	}
 }
+
+func TestGet(t *testing.T) {
+	el := Element{}
+	_, err := el.Get("/tmp/test_id")
+	if err != nil {
+		t.Error(err)
+	}
+}
