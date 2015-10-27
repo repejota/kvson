@@ -6,6 +6,14 @@ func TestDummy(t *testing.T) {
 
 }
 
+func TestGetError(t *testing.T) {
+	el := Element{}
+	_, err := el.Get("/tmp/foo")
+	if err == nil {
+		t.Error(err)
+	}
+}
+
 func TestSave(t *testing.T) {
 	el := Element{
 		ID:      "test_id",
