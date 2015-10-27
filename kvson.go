@@ -20,7 +20,7 @@ func (e Element) Get(path string) (el Element, err error) {
 	}
 	el = Element{
 		ID:      base,
-		Payload: string(data),
+		Payload: data,
 	}
 	return el, nil
 }
