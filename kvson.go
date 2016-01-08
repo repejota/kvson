@@ -1,6 +1,7 @@
 package kvson
 
 import (
+	"encoding/json"
 	"io/ioutil"
 	"path/filepath"
 )
@@ -8,7 +9,7 @@ import (
 // Element ...
 type Element struct {
 	ID      string
-	Payload []byte
+	Payload interface{}
 }
 
 // Get an element by its ID
@@ -28,7 +29,11 @@ func (e Element) Get(path string) (el Element, err error) {
 // Save an element
 func (e Element) Save(path string) (err error) {
 	filename := filepath.Join(path, e.ID)
-	err = ioutil.WriteFile(filename, []byte(e.Payload), 0644)
+	payload, err := json.Marshal(e.Payload)
+	if err != nil {
+		return err
+	}
+	err = ioutil.WriteFile(filename, payload, 0644)
 	if err != nil {
 		return err
 	}
