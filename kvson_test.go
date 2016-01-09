@@ -12,3 +12,7 @@ func TestInstancePath(t *testing.T) {
 		t.Error("Path is supposed to be /tmp but found", kvson.Path)
 	}
 }
+
+func TestSaveString(t *testing.T) {
+	kvson := NewKVSON("/tmp")
+}
