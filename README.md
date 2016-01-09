@@ -1,6 +1,6 @@
 # kvson
 
-[![License][License-Image]][License-Url] [![ReportCard][ReportCard-Image]][ReportCard-Url]
+[![License][License-Image]][License-Url] [![ReportCard][ReportCard-Image]][ReportCard-Url] [![Coverage][Coverage-Image]][Coverage-Url]
 
 Simple Key Value Simple Object Notation for Golang
 
@@ -80,5 +80,7 @@ Code released under [the MIT license](LICENSE).
 
 [License-Url]: http://opensource.org/licenses/MIT
 [License-Image]: https://img.shields.io/npm/l/express.svg
+[Coverage-Url]: https://coveralls.io/r/repejota/kvson?branch=master
+[Coverage-image]: https://img.shields.io/coveralls/repejota/kvson.svg
 [ReportCard-Url]: http://goreportcard.com/report/repejota/cache
 [ReportCard-Image]: http://goreportcard.com/badge/repejota/cache
