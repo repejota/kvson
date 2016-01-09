@@ -20,7 +20,8 @@ clean:
 deps:
 	# Dev dependencies
 
+dev-deps:
+
+
 dist-clean: clean
 	rm -rf pkg src bin
-
-.PHONY: build test lint deps clean dist-clean
