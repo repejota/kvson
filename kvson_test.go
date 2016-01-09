@@ -1,30 +1,14 @@
+// Copyright 2016 The kvson Authors. All rights reserved.
+// Use of this source code is governed by a MIT-style
+// license that can be found in the LICENSE file.
+
 package kvson
 
 import "testing"
 
-func TestGetError(t *testing.T) {
-	el := Element{}
-	_, err := el.Get("/tmp/foo")
-	if err == nil {
-		t.Error(err)
-	}
-}
-
-func TestSave(t *testing.T) {
-	el := Element{
-		ID:      "test_id",
-		Payload: []byte("test_payload"),
-	}
-	err := el.Save("/tmp")
-	if err != nil {
-		t.Error(err)
-	}
-}
-
-func TestGet(t *testing.T) {
-	el := Element{}
-	_, err := el.Get("/tmp/test_id")
-	if err != nil {
-		t.Error(err)
+func TestInstancePath(t *testing.T) {
+	kvson := NewKVSON("/tmp")
+	if kvson.Path != "/tmp" {
+		t.Error("Path is supposed to be /tmp but found", kvson.Path)
 	}
 }
