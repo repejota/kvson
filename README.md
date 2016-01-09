@@ -1,5 +1,6 @@
-kvson
-=====
+# kvson
+
+[![License][License-Image]][License-Url] [![ReportCard][ReportCard-Image]][ReportCard-Url]
 
 Simple Key Value Simple Object Notation for Golang
 
@@ -76,3 +77,8 @@ up, but we'll adhere to those rules whenever possible.
 Code and documentation copyright 2016 kvson authors.
 
 Code released under [the MIT license](LICENSE).
+
+[License-Url]: http://opensource.org/licenses/MIT
+[License-Image]: https://img.shields.io/npm/l/express.svg
+[ReportCard-Url]: http://goreportcard.com/report/repejota/cache
+[ReportCard-Image]: http://goreportcard.com/badge/repejota/cache
