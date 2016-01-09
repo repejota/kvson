@@ -18,11 +18,17 @@ lint:
 clean:
 	go clean
 
-deps:
+deps: dev-deps
 	# Dev dependencies
 
 dev-deps:
+	go get github.com/golang/lint/golint
+	go get github.com/jstemmer/gotags
+	go get github.com/axw/gocov/gocov
+	go get github.com/mattn/goveralls
 
+tags:
+	gotags -tag-relative=true -R=true -sort=true -f="tags" -fields=+l .
 
 dist-clean: clean
 	rm -rf pkg src bin
