@@ -5,6 +5,7 @@ Simple Key Value Simple Object Notation for Golang
 
 ## Table of contents
 
+- [Build Status](#build-status)
 - [Documentation](#documentation)
 - [Bugs and feature requests](#bugs-and-feature-requests)
 - [TODO](#todo)
@@ -12,6 +13,11 @@ Simple Key Value Simple Object Notation for Golang
 - [Versioning](#versioning)
 - [Creators](#creators)
 - [Copyright and license](#copyright-and-license)
+
+## Build status
+
+* Develop : [![Circle CI](https://circleci.com/gh/repejota/kvson/tree/develop.svg?style=svg)](https://circleci.com/gh/repejota/kvson/tree/develop)
+* Master : [![Circle CI](https://circleci.com/gh/repejota/kvson/tree/master.svg?style=svg)](https://circleci.com/gh/repejota/kvson/tree/master)
 
 ## Documentation
 
@@ -67,6 +73,6 @@ up, but we'll adhere to those rules whenever possible.
 
 ## Copyright and License
 
-Code and documentation copyright 2015 kvson authors.
+Code and documentation copyright 2016 kvson authors.
 
 Code released under [the MIT license](LICENSE).
