@@ -64,5 +64,5 @@ Code released under [the MIT license](LICENSE).
 [License-Image]: https://img.shields.io/npm/l/express.svg
 [Coverage-Url]: https://coveralls.io/r/repejota/kvson?branch=master
 [Coverage-image]: https://img.shields.io/coveralls/repejota/kvson.svg
-[ReportCard-Url]: http://goreportcard.com/report/repejota/cache
-[ReportCard-Image]: http://goreportcard.com/badge/repejota/cache
+[ReportCard-Url]: http://goreportcard.com/report/repejota/kvson
+[ReportCard-Image]: http://goreportcard.com/badge/repejota/kvson
