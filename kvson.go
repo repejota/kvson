@@ -48,6 +48,9 @@ func (s *KVSON) Put(key string, value interface{}) error {
 
 // NewKVSON allocates and initializes a new KVSON.
 //
-func NewKVSON(path string) *KVSON {
-	return &KVSON{Path: path}
+func NewKVSON(path string) (*KVSON, error) {
+	if _, err := os.Stat(path); os.IsNotExist(err) {
+		return nil, err
+	}
+	return &KVSON{Path: path}, nil
 }
