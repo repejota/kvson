@@ -2,13 +2,16 @@
 // Use of this source code is governed by a MIT-style
 // license that can be found in the LICENSE file.
 
-package kvson
+package kvson_test
 
 import (
+	"fmt"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"testing"
+
+	. "github.com/repejota/kvson"
 )
 
 type Example struct {
@@ -24,7 +27,7 @@ func TestInstancePath(t *testing.T) {
 		t.Error(err)
 	}
 	if kvson.Path != tmp {
-		t.Error("Path is supposed to be '"+tmp+"',  but found", kvson.Path)
+		t.Errorf("Path is supposed to be '%s',  but found %s", tmp, kvson.Path)
 	}
 }
 
@@ -32,8 +35,8 @@ func TestInstanceUnexistingPath(t *testing.T) {
 	var tmp = os.TempDir()
 	var path = filepath.Join(tmp, "notexists")
 	_, err := NewKVSON(path)
-	if err.Error() != "stat "+path+": no such file or directory" {
-		t.Error("It should fail as path doesn't exist, but we don't find any error.")
+	if err.Error() != fmt.Sprintf("stat %s: no such file or directory", path) {
+		t.Error("It should fail as path doesn't exist, but no error found.")
 	}
 }
 
@@ -42,8 +45,8 @@ func TestInstanceIsNotDirectoryPath(t *testing.T) {
 	var path = filepath.Join(tmp, "notadirectory")
 	ioutil.WriteFile(path, []byte("data"), 0644)
 	_, err := NewKVSON(path)
-	if err.Error() != "stat "+path+": must be a directory" {
-		t.Error("It should fail as path doesn't exist, but we don't find any error.")
+	if err.Error() != fmt.Sprintf("stat %s: must be a directory", path) {
+		t.Error("It should fail as path is not a directory, but no error found.")
 	}
 }
 
@@ -55,7 +58,7 @@ func TestPutString(t *testing.T) {
 	}
 	err = kvson.Put("foo", "bar")
 	if err != nil {
-		t.Error("It should not fail, but got an error", err)
+		t.Errorf("It should not fail, but got an error: %s", err)
 	}
 }
 
@@ -68,10 +71,10 @@ func TestGetString(t *testing.T) {
 	var data string
 	err = kvson.Get("foo", &data)
 	if err != nil {
-		t.Error("It should not fail, but got an error", err)
+		t.Errorf("It should not fail, but got an error: %s", err)
 	}
 	if data != "bar" {
-		t.Error("Value should be equal to 'bar', but got", data)
+		t.Errorf("Value should be equal to 'bar', but got: %s", data)
 	}
 }
 
@@ -88,7 +91,7 @@ func TestPutStruct(t *testing.T) {
 	}
 	err = kvson.Put("example", example)
 	if err != nil {
-		t.Error("It should not fail, but got an error", err)
+		t.Errorf("It should not fail, but got an error: %s", err)
 	}
 }
 
@@ -101,12 +104,12 @@ func TestGetStruct(t *testing.T) {
 	var example Example
 	err = kvson.Get("example", &example)
 	if err != nil {
-		t.Error("It should not fail, but got an error", err)
+		t.Errorf("It should not fail, but got an error: %s", err)
 	}
 	if example.ID != 1 {
-		t.Error("Payload ID should be 1, but got", example.ID)
+		t.Errorf("Payload ID should be 1, but got: %d", example.ID)
 	}
 	if example.Key != "key" {
-		t.Error("Payload ID should be 'key', but got", example.Key)
+		t.Errorf("Payload ID should be 'key', but got: %s", example.Key)
 	}
 }
