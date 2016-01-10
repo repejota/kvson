@@ -1,3 +1,5 @@
 test:
+  pre:
+    - make dev-deps
   override:
     - make cover
