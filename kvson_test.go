@@ -2,7 +2,7 @@
 // Use of this source code is governed by a MIT-style
 // license that can be found in the LICENSE file.
 
-package kvson
+package kvson_test
 
 import (
 	"fmt"
@@ -10,6 +10,8 @@ import (
 	"os"
 	"path/filepath"
 	"testing"
+
+	. "github.com/repejota/kvson"
 )
 
 type Example struct {
