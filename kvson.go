@@ -1,41 +1,53 @@
+// Copyright 2016 The kvson Authors. All rights reserved.
+// Use of this source code is governed by a MIT-style
+// license that can be found in the LICENSE file.
+
+// Package kvson implements a simple object notation storage module.
+//
 package kvson
 
 import (
 	"encoding/json"
 	"io/ioutil"
+	"os"
 	"path/filepath"
 )
 
-// Element ...
-type Element struct {
-	ID      string
-	Payload interface{}
+// KVSON ...
+type KVSON struct {
+	Path string
 }
 
-// Get an element by its ID
-func (e Element) Get(path string) (el Element, err error) {
-	base := filepath.Base(path)
-	data, err := ioutil.ReadFile(path)
-	if err != nil {
-		return el, err
-	}
-	el = Element{
-		ID:      base,
-		Payload: data,
-	}
-	return el, nil
-}
+// perm are the file permissions used
+const perm os.FileMode = 0644
 
-// Save an element
-func (e Element) Save(path string) (err error) {
-	filename := filepath.Join(path, e.ID)
-	payload, err := json.Marshal(e.Payload)
+// Get gets a value by key
+func (s *KVSON) Get(key string, value interface{}) error {
+	filename := filepath.Join(s.Path, key)
+	data, err := ioutil.ReadFile(filename)
 	if err != nil {
 		return err
 	}
-	err = ioutil.WriteFile(filename, payload, 0644)
+	err = json.Unmarshal(data, &value)
+	return err
+}
+
+// Put puts a value
+func (s *KVSON) Put(key string, value interface{}) error {
+	filename := filepath.Join(s.Path, key)
+	data, err := json.Marshal(value)
+	if err != nil {
+		return err
+	}
+	err = ioutil.WriteFile(filename, data, perm)
 	if err != nil {
 		return err
 	}
 	return nil
+}
+
+// NewKVSON allocates and initializes a new KVSON.
+//
+func NewKVSON(path string) *KVSON {
+	return &KVSON{Path: path}
 }
