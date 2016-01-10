@@ -71,6 +71,16 @@ func (s *KVSON) Put(key string, value interface{}) error {
 	return nil
 }
 
+// Exists checks if a key is available on the store.
+//
+func (s *KVSON) Exists(key string) bool {
+	filename := filepath.Join(s.Path, key)
+	if _, err := os.Stat(filename); err == nil {
+		return true
+	}
+	return false
+}
+
 // NewKVSON allocates and initializes a new KVSON.
 //
 // It checks if the base path provided exists and it is a directory.

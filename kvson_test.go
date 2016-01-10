@@ -113,3 +113,21 @@ func TestGetStruct(t *testing.T) {
 		t.Errorf("Payload ID should be 'key', but got: %s", example.Key)
 	}
 }
+
+func TestExists(t *testing.T) {
+	var tmp = os.TempDir()
+	kvson, err := NewKVSON(tmp)
+	if err != nil {
+		t.Error(err)
+	}
+	if kvson.Exists("exists") == true {
+		t.Errorf("It should not exist, but it does")
+	}
+	err = kvson.Put("exists", "bar")
+	if err != nil {
+		t.Errorf("It should not fail, but got an error: %s", err)
+	}
+	if kvson.Exists("exists") == false {
+		t.Errorf("It should exist, but it doesn't")
+	}
+}
