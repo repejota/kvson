@@ -5,7 +5,7 @@ install:
 	go install
 
 test:
-	go test -v -race  ./... -coverprofile=coverage.out
+	go test -v -race  ./...
 
 cover:
 	goveralls -v -coverprofile=coverage.out -service=circle-ci -repotoken=aAkZEnv0NuO7vPkra5A0ftypppCd3uIDQ
