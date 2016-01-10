@@ -22,13 +22,13 @@ type KVSON struct {
 const perm os.FileMode = 0644
 
 // Get gets a value by key
-func (s *KVSON) Get(key string, v interface{}) error {
+func (s *KVSON) Get(key string, value interface{}) error {
 	filename := filepath.Join(s.Path, key)
 	data, err := ioutil.ReadFile(filename)
 	if err != nil {
 		return err
 	}
-	err = json.Unmarshal(data, &v)
+	err = json.Unmarshal(data, &value)
 	return err
 }
 
