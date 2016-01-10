@@ -19,14 +19,8 @@ type KVSON struct {
 	Path string
 }
 
-// element ...
-type element struct {
-	ID      string
-	Payload interface{}
-}
-
-// filemode ...
-const filemode os.FileMode = 0644
+// perm are the file permissions used
+const perm os.FileMode = 0644
 
 // getBytes converts an arbitrary Golang interface to byte array
 func getBytes(payload interface{}) ([]byte, error) {
@@ -39,21 +33,12 @@ func getBytes(payload interface{}) ([]byte, error) {
 	return buf.Bytes(), nil
 }
 
-/*
 // Get an element by its ID
-func (s *KVSON) Get(key string) (el Element, err error) {
-	base := filepath.Base(path)
-	data, err := ioutil.ReadFile(path)
-	if err != nil {
-		return el, err
-	}
-	el = Element{
-		ID:      base,
-		Payload: data,
-	}
-	return el, nil
+func (s *KVSON) Read(key string) (payload []byte, err error) {
+	filename := filepath.Join(s.Path, key)
+	payload, err = ioutil.ReadFile(filename)
+	return payload, err
 }
-*/
 
 // Save an element
 func (s *KVSON) Save(key string, payload interface{}) error {
@@ -62,7 +47,7 @@ func (s *KVSON) Save(key string, payload interface{}) error {
 	if err != nil {
 		return err
 	}
-	err = ioutil.WriteFile(filename, bytes, filemode)
+	err = ioutil.WriteFile(filename, bytes, perm)
 	if err != nil {
 		return err
 	}
@@ -72,8 +57,5 @@ func (s *KVSON) Save(key string, payload interface{}) error {
 // NewKVSON allocates and initializes a new KVSON.
 //
 func NewKVSON(path string) *KVSON {
-	kvson := KVSON{
-		Path: path,
-	}
-	return &kvson
+	return &KVSON{Path: path}
 }
