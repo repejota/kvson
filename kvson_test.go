@@ -15,7 +15,7 @@ func TestInstancePath(t *testing.T) {
 
 func TestSaveString(t *testing.T) {
 	kvson := NewKVSON("/tmp")
-	err := kvson.Save("foo", "bar")
+	err := kvson.Put("foo", "bar")
 	if err != nil {
 		t.Error("It should not fail, but got an error", err)
 	}
@@ -23,7 +23,7 @@ func TestSaveString(t *testing.T) {
 
 func TestGetString(t *testing.T) {
 	kvson := NewKVSON("/tmp")
-	bytes, err := kvson.Read("foo")
+	bytes, err := kvson.Get("foo")
 	payload := string(bytes)
 	if err != nil {
 		t.Error("It should not fail, but got an error", err)

@@ -33,15 +33,15 @@ func getBytes(payload interface{}) ([]byte, error) {
 	return buf.Bytes(), nil
 }
 
-// Get an element by its ID
-func (s *KVSON) Read(key string) (payload []byte, err error) {
+// Get gets a value by key
+func (s *KVSON) Get(key string) (payload []byte, err error) {
 	filename := filepath.Join(s.Path, key)
 	payload, err = ioutil.ReadFile(filename)
 	return payload, err
 }
 
-// Save an element
-func (s *KVSON) Save(key string, payload interface{}) error {
+// Put puts a value
+func (s *KVSON) Put(key string, payload interface{}) error {
 	filename := filepath.Join(s.Path, key)
 	bytes, err := getBytes(payload)
 	if err != nil {
