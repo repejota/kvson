@@ -1,0 +1,10 @@
+mode: atomic
+github.com/repejota/kvson/kvson.go:32.52,36.16 4 1
+github.com/repejota/kvson/kvson.go:39.2,39.25 1 1
+github.com/repejota/kvson/kvson.go:36.16,38.3 1 0
+github.com/repejota/kvson/kvson.go:59.61,62.16 3 1
+github.com/repejota/kvson/kvson.go:65.2,66.16 2 1
+github.com/repejota/kvson/kvson.go:69.2,69.12 1 1
+github.com/repejota/kvson/kvson.go:62.16,64.3 1 0
+github.com/repejota/kvson/kvson.go:66.16,68.3 1 0
+github.com/repejota/kvson/kvson.go:74.35,79.2 2 2

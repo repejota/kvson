@@ -6,6 +6,14 @@
 //
 package kvson
 
+import (
+	"bytes"
+	"encoding/gob"
+	"io/ioutil"
+	"os"
+	"path/filepath"
+)
+
 // KVSON ...
 type KVSON struct {
 	Path string
@@ -15,6 +23,20 @@ type KVSON struct {
 type element struct {
 	ID      string
 	Payload interface{}
+}
+
+// filemode ...
+const filemode os.FileMode = 0644
+
+// getBytes converts an arbitrary Golang interface to byte array
+func getBytes(payload interface{}) ([]byte, error) {
+	var buf bytes.Buffer
+	enc := gob.NewEncoder(&buf)
+	err := enc.Encode(payload)
+	if err != nil {
+		return nil, err
+	}
+	return buf.Bytes(), nil
 }
 
 /*
@@ -31,21 +53,21 @@ func (s *KVSON) Get(key string) (el Element, err error) {
 	}
 	return el, nil
 }
+*/
 
 // Save an element
-func (s *KVSON) Save(path string) (err error) {
-	filename := filepath.Join(path, e.ID)
-	payload, err := json.Marshal(e.Payload)
+func (s *KVSON) Save(key string, payload interface{}) error {
+	filename := filepath.Join(s.Path, key)
+	bytes, err := getBytes(payload)
 	if err != nil {
 		return err
 	}
-	err = ioutil.WriteFile(filename, payload, 0644)
+	err = ioutil.WriteFile(filename, bytes, filemode)
 	if err != nil {
 		return err
 	}
 	return nil
 }
-*/
 
 // NewKVSON allocates and initializes a new KVSON.
 //
