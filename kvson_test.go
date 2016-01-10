@@ -4,7 +4,12 @@
 
 package kvson
 
-import "testing"
+import (
+	"io/ioutil"
+	"os"
+	"path/filepath"
+	"testing"
+)
 
 type Example struct {
 	ID         int
@@ -13,24 +18,38 @@ type Example struct {
 }
 
 func TestInstancePath(t *testing.T) {
-	kvson, err := NewKVSON("/tmp")
+	var tmp = os.TempDir()
+	kvson, err := NewKVSON(tmp)
 	if err != nil {
 		t.Error(err)
 	}
-	if kvson.Path != "/tmp" {
-		t.Error("Path is supposed to be '/tmp',  but found", kvson.Path)
+	if kvson.Path != tmp {
+		t.Error("Path is supposed to be '"+tmp+"',  but found", kvson.Path)
 	}
 }
 
 func TestInstanceUnexistingPath(t *testing.T) {
-	_, err := NewKVSON("/tmp/kvson")
-	if err == nil {
+	var tmp = os.TempDir()
+	var path = filepath.Join(tmp, "notexists")
+	_, err := NewKVSON(path)
+	if err.Error() != "stat "+path+": no such file or directory" {
+		t.Error("It should fail as path doesn't exist, but we don't find any error.")
+	}
+}
+
+func TestInstanceIsNotDirectoryPath(t *testing.T) {
+	var tmp = os.TempDir()
+	var path = filepath.Join(tmp, "notadirectory")
+	ioutil.WriteFile(path, []byte("data"), 0644)
+	_, err := NewKVSON(path)
+	if err.Error() != "stat "+path+": must be a directory" {
 		t.Error("It should fail as path doesn't exist, but we don't find any error.")
 	}
 }
 
 func TestPutString(t *testing.T) {
-	kvson, err := NewKVSON("/tmp")
+	var tmp = os.TempDir()
+	kvson, err := NewKVSON(tmp)
 	if err != nil {
 		t.Error(err)
 	}
@@ -41,7 +60,8 @@ func TestPutString(t *testing.T) {
 }
 
 func TestGetString(t *testing.T) {
-	kvson, err := NewKVSON("/tmp")
+	var tmp = os.TempDir()
+	kvson, err := NewKVSON(tmp)
 	if err != nil {
 		t.Error(err)
 	}
@@ -56,14 +76,15 @@ func TestGetString(t *testing.T) {
 }
 
 func TestPutStruct(t *testing.T) {
+	var tmp = os.TempDir()
+	kvson, err := NewKVSON(tmp)
+	if err != nil {
+		t.Error(err)
+	}
 	example := Example{
 		ID:         1,
 		Key:        "key",
 		AnotherKey: "This is another key",
-	}
-	kvson, err := NewKVSON("/tmp")
-	if err != nil {
-		t.Error(err)
 	}
 	err = kvson.Put("example", example)
 	if err != nil {
@@ -72,7 +93,8 @@ func TestPutStruct(t *testing.T) {
 }
 
 func TestGetStruct(t *testing.T) {
-	kvson, err := NewKVSON("/tmp")
+	var tmp = os.TempDir()
+	kvson, err := NewKVSON(tmp)
 	if err != nil {
 		t.Error(err)
 	}

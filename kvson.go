@@ -8,6 +8,7 @@ package kvson
 
 import (
 	"encoding/json"
+	"errors"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -49,8 +50,12 @@ func (s *KVSON) Put(key string, value interface{}) error {
 // NewKVSON allocates and initializes a new KVSON.
 //
 func NewKVSON(path string) (*KVSON, error) {
-	if _, err := os.Stat(path); os.IsNotExist(err) {
+	stat, err := os.Stat(path)
+	if os.IsNotExist(err) {
 		return nil, err
+	}
+	if stat.Mode().IsRegular() {
+		return nil, errors.New("stat " + path + ": must be a directory")
 	}
 	return &KVSON{Path: path}, nil
 }
