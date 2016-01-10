@@ -24,7 +24,7 @@ func TestInstancePath(t *testing.T) {
 
 func TestInstanceUnexistingPath(t *testing.T) {
 	_, err := NewKVSON("/tmp/kvson")
-	if err == nil {
+	if err.Error() != "stat /tmp/kvson: no such file or directory" {
 		t.Error("It should fail as path doesn't exist, but we don't find any error.")
 	}
 }
