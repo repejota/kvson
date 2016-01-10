@@ -7,8 +7,7 @@
 package kvson
 
 import (
-	"bytes"
-	"encoding/gob"
+	"encoding/json"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -22,32 +21,25 @@ type KVSON struct {
 // perm are the file permissions used
 const perm os.FileMode = 0644
 
-// getBytes converts an arbitrary Golang interface to byte array
-func getBytes(payload interface{}) ([]byte, error) {
-	var buf bytes.Buffer
-	enc := gob.NewEncoder(&buf)
-	err := enc.Encode(payload)
-	if err != nil {
-		return nil, err
-	}
-	return buf.Bytes(), nil
-}
-
 // Get gets a value by key
-func (s *KVSON) Get(key string) (payload []byte, err error) {
+func (s *KVSON) Get(key string, v interface{}) error {
 	filename := filepath.Join(s.Path, key)
-	payload, err = ioutil.ReadFile(filename)
-	return payload, err
-}
-
-// Put puts a value
-func (s *KVSON) Put(key string, payload interface{}) error {
-	filename := filepath.Join(s.Path, key)
-	bytes, err := getBytes(payload)
+	data, err := ioutil.ReadFile(filename)
 	if err != nil {
 		return err
 	}
-	err = ioutil.WriteFile(filename, bytes, perm)
+	err = json.Unmarshal(data, &v)
+	return err
+}
+
+// Put puts a value
+func (s *KVSON) Put(key string, value interface{}) error {
+	filename := filepath.Join(s.Path, key)
+	data, err := json.Marshal(value)
+	if err != nil {
+		return err
+	}
+	err = ioutil.WriteFile(filename, data, perm)
 	if err != nil {
 		return err
 	}
