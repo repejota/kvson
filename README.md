@@ -2,7 +2,7 @@
 
 [![License][License-Image]][License-Url] [![ReportCard][ReportCard-Image]][ReportCard-Url] [![Coverage][Coverage-Image]][Coverage-Url]
 
-Simple Key Value Simple Object Notation for Golang.
+A simple key value object notation storage module for Golang.
 
 ## Table of contents
 
