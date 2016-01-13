@@ -81,6 +81,21 @@ func (s *KVSON) Exists(key string) bool {
 	return false
 }
 
+func (s *KVSON) Delete(key string) bool {
+	if s.Exists(key) {
+		filename := filepath.Join(s.Path, key)
+		if _, err := os.Stat(filename); err == nil {
+
+			err := os.Remove(filename)
+			if err == nil {
+				return true
+			}
+		}
+	}
+
+	return false
+}
+
 // NewKVSON allocates and initializes a new KVSON.
 //
 // It checks if the base path provided exists and it is a directory.
