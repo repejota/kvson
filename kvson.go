@@ -81,19 +81,20 @@ func (s *KVSON) Exists(key string) bool {
 	return false
 }
 
-func (s *KVSON) Delete(key string) bool {
-	if s.Exists(key) {
-		filename := filepath.Join(s.Path, key)
-		if _, err := os.Stat(filename); err == nil {
+// Delete if a exists a key on the store.
+func (s *KVSON) Delete(key string) error {
 
-			err := os.Remove(filename)
-			if err == nil {
-				return true
-			}
+	filename := filepath.Join(s.Path, key)
+	_, err := os.Stat(filename)
+	if err == nil {
+		err = os.Remove(filename)
+		if err != nil {
+			return err
 		}
+
 	}
 
-	return false
+	return err
 }
 
 // NewKVSON allocates and initializes a new KVSON.
