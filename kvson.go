@@ -18,6 +18,8 @@ import (
 	"path/filepath"
 )
 
+var Version = "No version provided"
+
 // KVSON is a type that holds the instance of a single key-value storage.
 //
 // All values are saved to a folder, so you can have multiple storage instances
