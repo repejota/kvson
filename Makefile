@@ -1,8 +1,8 @@
 build:
-	go build
+	go build -ldflags "-X kvson.Version `git describe --abbrev=0 --tags`"
 
 install:
-	go install
+	go install -ldflags "-X kvson.Version `git describe --abbrev=0 --tags`"
 
 test:
 	go test -v -race  ./...

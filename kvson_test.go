@@ -130,4 +130,9 @@ func TestExists(t *testing.T) {
 	if kvson.Exists("exists") == false {
 		t.Errorf("It should exist, but it doesn't")
 	}
+
+	err = kvson.Delete("exists")
+	if err != nil {
+		t.Errorf("It should delete, but it doesn't")
+	}
 }
