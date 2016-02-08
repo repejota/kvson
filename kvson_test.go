@@ -7,9 +7,11 @@ package kvson_test
 import (
 	"fmt"
 	"io/ioutil"
+	"math/rand"
 	"os"
 	"path/filepath"
 	"testing"
+	"time"
 
 	. "github.com/repejota/kvson"
 )
@@ -117,6 +119,7 @@ func TestGetStruct(t *testing.T) {
 func TestExists(t *testing.T) {
 	var tmp = os.TempDir()
 	kvson, err := NewKVSON(tmp)
+	kvson.Delete("exists")
 	if err != nil {
 		t.Error(err)
 	}
@@ -134,5 +137,17 @@ func TestExists(t *testing.T) {
 	err = kvson.Delete("exists")
 	if err != nil {
 		t.Errorf("It should delete, but it doesn't")
+	}
+}
+
+func BenchmarkPut(b *testing.B) {
+	var tmp = os.TempDir()
+	rand.Seed(time.Now().UnixNano())
+	kvson, err := NewKVSON(tmp)
+	for n := 0; n < b.N; n++ {
+		err = kvson.Put(string(rand.Int()), n)
+		if err != nil {
+			b.Errorf("It should not fail, but got an error: %s", err)
+		}
 	}
 }

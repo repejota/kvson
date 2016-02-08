@@ -7,6 +7,9 @@ install:
 test:
 	go test -v -race  ./...
 
+bench:
+	go test -v -bench .
+
 cover:
 	go test -v -race  ./... -coverprofile=coverage.out
 	goveralls -v -coverprofile=coverage.out -service=circle-ci -repotoken=aAkZEnv0NuO7vPkra5A0ftypppCd3uIDQ
