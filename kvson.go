@@ -18,6 +18,8 @@ import (
 	"path/filepath"
 )
 
+var Version = "No version provided"
+
 // KVSON is a type that holds the instance of a single key-value storage.
 //
 // All values are saved to a folder, so you can have multiple storage instances
@@ -79,6 +81,22 @@ func (s *KVSON) Exists(key string) bool {
 		return true
 	}
 	return false
+}
+
+// Delete if a exists a key on the store.
+func (s *KVSON) Delete(key string) error {
+
+	filename := filepath.Join(s.Path, key)
+	_, err := os.Stat(filename)
+	if err == nil {
+		err = os.Remove(filename)
+		if err != nil {
+			return err
+		}
+
+	}
+
+	return err
 }
 
 // NewKVSON allocates and initializes a new KVSON.
