@@ -1,11 +1,14 @@
 build:
-	go build
+	go build -ldflags "-X kvson.Version `git describe --abbrev=0 --tags`"
 
 install:
-	go install
+	go install -ldflags "-X kvson.Version `git describe --abbrev=0 --tags`"
 
 test:
 	go test -v -race  ./...
+
+bench:
+	go test -v -bench .
 
 cover:
 	go test -v -race  ./... -coverprofile=coverage.out
