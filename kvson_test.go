@@ -140,6 +140,27 @@ func TestExists(t *testing.T) {
 	}
 }
 
+func TestDelete(t *testing.T) {
+
+	var tmp = os.TempDir()
+	kvson, err := NewKVSON(tmp)
+	err = kvson.Delete("not_exists")
+	if err == nil {
+		t.Errorf("It should give an error. The key doesn't exists")
+	}
+
+	err = kvson.Put("exists_key", "foo")
+	if err != nil {
+		t.Errorf("It should not give an error. The key should be created")
+	}
+
+	err = kvson.Delete("exists_key")
+	if err != nil {
+		t.Errorf("It should not give an error. The key should be deleted")
+	}
+
+}
+
 func BenchmarkPut(b *testing.B) {
 	var tmp = os.TempDir()
 	rand.Seed(time.Now().UnixNano())
@@ -150,4 +171,5 @@ func BenchmarkPut(b *testing.B) {
 			b.Errorf("It should not fail, but got an error: %s", err)
 		}
 	}
+
 }
