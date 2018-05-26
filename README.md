@@ -1,65 +1,31 @@
 # kvson
 
-[![License][License-Image]][License-Url] [![ReportCard][ReportCard-Image]][ReportCard-Url] [![Circle CI](https://circleci.com/gh/repejota/kvson/tree/master.svg?style=svg)](https://circleci.com/gh/repejota/kvson/tree/master) [![Coverage][Coverage-Image]][Coverage-Url]
+Simple Go key value object notation storage module.
 
-A simple key value object notation storage module for Golang.
+Godoc reference: [github.com/repejota/timeago](https://godoc.org/github.com/repejota/timeago)
 
-## Table of contents
+## Badges
 
-- [Build Status](#build-status)
-- [Documentation](#documentation)
-- [Bugs and feature requests](#bugs-and-feature-requests)
-- [Contributing](#contributing)
-- [Versioning](#versioning)
-- [Creators](#creators)
-- [Copyright and license](#copyright-and-license)
+[![License][License-Image]][License-Url]
+[![CircleCI](https://circleci.com/gh/repejota/timeago.svg?style=svg)](https://circleci.com/gh/repejota/timeago)
+[![Coverage Status](https://coveralls.io/repos/github/repejota/timeago/badge.svg?branch=master)](https://coveralls.io/github/repejota/timeago?branch=master)
+[![Go Report Card](https://goreportcard.com/badge/github.com/repejota/timeago)](https://goreportcard.com/report/github.com/repejota/timeago)
 
+## License
 
+Copyright (c) 2018 Raül Pérez, repejota@gmail.com.
 
-## Documentation
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-Please check the whole Project Documentation repo at:
-[kvson documentation](https://github.com/repejota/kvson)
+    http://www.apache.org/licenses/LICENSE-2.0
 
-## Bugs and feature requests
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 
-Have a bug or a feature request? Please first read the
-[issue guidelines](CONTRIBUTING.md#using-the-issue-tracker)
-and search for existing and closed issues. If your problem or idea is not
-addressed yet,
-[please open a new issue](https://github.com/repejota/kvson/issues/new).
-
-## Contributing
-
-Please read through our [contributing guidelines](CONTRIBUTING.md). Included
-are directions for opening issues, coding standards, and notes on development.
-
-Moreover, if your pull request contains patches or features, you must include
-relevant unit tests.
-
-## Versioning
-
-For transparency into our release cycle and in striving to maintain backward
-compatibility, this project is maintained under
-[the Semantic Versioning guidelines](http://semver.org/). Sometimes we screw
-up, but we'll adhere to those rules whenever possible.
-
-## Creators
-
-**Raül Pérez**
-
-- <https://twitter.com/repejota>
-- <https://github.com/repejota>
-
-## Copyright and License
-
-Code and documentation copyright 2016 kvson authors.
-
-Code released under [the MIT license](LICENSE).
-
-[License-Url]: http://opensource.org/licenses/MIT
-[License-Image]: https://img.shields.io/npm/l/express.svg
-[Coverage-Url]: https://coveralls.io/r/repejota/kvson?branch=master
-[Coverage-image]: https://img.shields.io/coveralls/repejota/kvson.svg
-[ReportCard-Url]: http://goreportcard.com/report/repejota/kvson
-[ReportCard-Image]: http://goreportcard.com/badge/repejota/kvson
+[License-Url]: http://opensource.org/licenses/Apache
+[License-Image]: https://img.shields.io/badge/License-Apache-blue.svg
