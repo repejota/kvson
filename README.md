@@ -1,6 +1,6 @@
 # kvson
 
-[![License][License-Image]][License-Url] [![ReportCard][ReportCard-Image]][ReportCard-Url] [![Coverage][Coverage-Image]][Coverage-Url]
+[![License][License-Image]][License-Url] [![ReportCard][ReportCard-Image]][ReportCard-Url] [![Circle CI](https://circleci.com/gh/repejota/kvson/tree/master.svg?style=svg)](https://circleci.com/gh/repejota/kvson/tree/master) [![Coverage][Coverage-Image]][Coverage-Url]
 
 A simple key value object notation storage module for Golang.
 
@@ -14,10 +14,7 @@ A simple key value object notation storage module for Golang.
 - [Creators](#creators)
 - [Copyright and license](#copyright-and-license)
 
-## Build status
 
-* Develop : [![Circle CI](https://circleci.com/gh/repejota/kvson/tree/develop.svg?style=svg)](https://circleci.com/gh/repejota/kvson/tree/develop)
-* Master : [![Circle CI](https://circleci.com/gh/repejota/kvson/tree/master.svg?style=svg)](https://circleci.com/gh/repejota/kvson/tree/master)
 
 ## Documentation
 
