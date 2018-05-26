@@ -2,7 +2,7 @@
 
 Simple Go key value object notation storage module.
 
-Godoc reference: [github.com/repejota/timeago](https://godoc.org/github.com/repejota/timeago)
+Godoc reference: [github.com/repejota/kvson](https://godoc.org/github.com/repejota/kvson)
 
 ## Badges
 
