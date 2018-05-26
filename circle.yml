@@ -1,6 +1,0 @@
-test:
-  pre:
-    - make dev-deps
-  override:
-    - make lint
-    - make cover
